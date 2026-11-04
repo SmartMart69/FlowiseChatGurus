@@ -1,4 +1,3 @@
-import axios from 'axios'
 import * as fs from 'fs'
 import * as path from 'path'
 import { INodeOptionsValue } from './Interface'
@@ -19,45 +18,12 @@ const getModelsJSONPath = (): string => {
     return ''
 }
 
-const isValidUrl = (urlString: string) => {
-    let url
-    try {
-        url = new URL(urlString)
-    } catch (e) {
-        return false
-    }
-    return url.protocol === 'http:' || url.protocol === 'https:'
-}
-
 /**
- * Load the raw model file from either a URL or a local file
- * If any of the loading fails, fallback to the default models.json file on disk
+ * Load the model list from the bundled models.json (no remote loading)
  */
 const getRawModelFile = async () => {
-    const modelFile =
-        process.env.MODEL_LIST_CONFIG_JSON ?? 'https://raw.githubusercontent.com/FlowiseAI/Flowise/main/packages/components/models.json'
-    try {
-        if (isValidUrl(modelFile)) {
-            const resp = await axios.get(modelFile)
-            if (resp.status === 200 && resp.data) {
-                return resp.data
-            } else {
-                throw new Error('Error fetching model list')
-            }
-        } else if (fs.existsSync(modelFile)) {
-            const models = await fs.promises.readFile(modelFile, 'utf8')
-            if (models) {
-                return JSON.parse(models)
-            }
-        }
-        throw new Error('Model file does not exist or is empty')
-    } catch (e) {
-        const models = await fs.promises.readFile(getModelsJSONPath(), 'utf8')
-        if (models) {
-            return JSON.parse(models)
-        }
-        return {}
-    }
+    const models = await fs.promises.readFile(getModelsJSONPath(), 'utf8')
+    return JSON.parse(models)
 }
 
 const getModelConfig = async (category: MODEL_TYPE, name: string) => {

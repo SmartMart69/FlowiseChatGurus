@@ -707,8 +707,8 @@
                     "output_cost": 0.000014
                 },
                 {
-                    "label": "gpt-5.2-pro",
-                    "name": "gpt-5.2-pro",
+                    "label": "gpt-5.6-sol",
+                    "name": "gpt-5.6-sol",
                     "input_cost": 0.000021,
                     "output_cost": 0.000168
                 },
@@ -2713,8 +2713,8 @@
                     "name": "text-embedding-3-small"
                 },
                 {
-                    "label": "text-embedding-ada-002",
-                    "name": "text-embedding-ada-002"
+                    "label": "Qwen/Qwen3-VL-Embedding-8B",
+                    "name": "Qwen/Qwen3-VL-Embedding-8B"
                 }
             ]
         },
@@ -2730,8 +2730,8 @@
                     "name": "text-embedding-3-small"
                 },
                 {
-                    "label": "text-embedding-ada-002",
-                    "name": "text-embedding-ada-002"
+                    "label": "Qwen/Qwen3-VL-Embedding-8B",
+                    "name": "Qwen/Qwen3-VL-Embedding-8B"
                 }
             ]
         },

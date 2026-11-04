@@ -372,7 +372,7 @@ class MultiFileLoader extends BaseDocumentLoader {
         const documents: Document[] = []
 
         for (const fileBlob of this.fileBlobs) {
-            const loaderFactory = this.loaders[fileBlob.ext]
+            const loaderFactory = this.loaders[(fileBlob.ext || '').toLowerCase()]
             if (loaderFactory) {
                 const loader = loaderFactory(fileBlob.blob)
                 documents.push(...(await loader.load()))
