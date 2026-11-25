@@ -562,7 +562,8 @@ export const executeFlow = async ({
         chatId,
         sessionId,
         chatHistory,
-        apiMessageId
+        apiMessageId,
+        ...(apiOverrideStatus && overrideConfig?.vars ? { vars: overrideConfig.vars } : {})
     }
 
     logger.debug(`[server]: [${orgId}]: Start building flow ${chatflowid}`)
